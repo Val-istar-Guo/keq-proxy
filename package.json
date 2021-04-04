@@ -63,5 +63,23 @@
   },
   "peerDependencies": {
     "keq": "^1.0.1"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "keywords": [
+    "keq",
+    "proxy"
+  ],
+  "author": "Val.istar.Guo <val.istar.guo@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Val-istar-Guo/keq-proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Val-istar-Guo/keq-proxy/issues"
+  },
+  "homepage": "https://github.com/Val-istar-Guo/keq-proxy#readme"
 }
