@@ -17,8 +17,8 @@ interface KeqProxy {
 type Host = Readonly<string>
 
 
-const proxy: KeqProxy = function (from, to) {
-  return async (ctx, next) => {
+const proxy: KeqProxy = function(from, to) {
+  return async(ctx, next) => {
     if (ctx.url.host === from) {
       ctx.url = {
         ...url.parse(url.format({ ...ctx.url, host: to }), true),
@@ -31,11 +31,11 @@ const proxy: KeqProxy = function (from, to) {
 }
 
 
-proxy.replace = function (regexp, replaceValue) {
-  return async (ctx, next) => {
+proxy.replace = function(regexp, replaceValue) {
+  return async(ctx, next) => {
     ctx.url = {
       ...url.parse(ctx.url.href.replace(regexp, replaceValue as any), true),
-      params: ctx.url.params
+      params: ctx.url.params,
     }
 
     await next()
