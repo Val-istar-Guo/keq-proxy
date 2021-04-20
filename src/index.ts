@@ -33,8 +33,9 @@ const proxy: KeqProxy = function(from, to) {
 
 proxy.replace = function(regexp, replaceValue) {
   return async(ctx, next) => {
+    const href = url.format(ctx.url)
     ctx.url = {
-      ...url.parse(ctx.url.href.replace(regexp, replaceValue as any), true),
+      ...url.parse(href.replace(regexp, replaceValue as any), true),
       params: ctx.url.params,
     }
 
