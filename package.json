@@ -3,7 +3,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Change the request url, just like a proxy.",
   "scripts": {
     "test": "ava",
