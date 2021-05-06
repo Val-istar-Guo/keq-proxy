@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/Val-istar-Guo/keq-proxy/compare/v1.0.1...v1.1.0) (2021-05-06)
+
+
+### Features
+
+* add proxy.module function ([3a0aefb](https://github.com/Val-istar-Guo/keq-proxy/commit/3a0aefbf3412c7ecee4e88648430bf6849f8dcee))
+
 ### [1.0.1](https://github.com/Val-istar-Guo/keq-proxy/compare/v1.0.0...v1.0.1) (2021-04-20)
 
 
