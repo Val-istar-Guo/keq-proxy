@@ -11,7 +11,6 @@ interface KeqProxy {
   (from: Host, to: Host): Middleware
 
   replace(searchValue: RegExp | string, replaceValue: string | KeqProxyReplacer): Middleware
-  // replace(searchValue: string, replaceValue: string): Middleware
   module(moduleName: string, url: string): Middleware
 }
 
@@ -50,10 +49,9 @@ proxy.module = function(moduleName , uri) {
       if (!ctx.module) throw new Error('Please set the module middleware first.')
 
       const pathname = ctx.module.pathname
-      uri = `${uri.replace(/\/+$/, '')}/${pathname.replace(/^\/+/, '')}`
 
       ctx.url = {
-        ...url.parse(uri, true),
+        ...url.parse(`${uri.replace(/\/+$/, '')}/${pathname.replace(/^\/+/, '')}`, true),
         params: ctx.url.params,
       }
     }
