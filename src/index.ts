@@ -52,6 +52,7 @@ proxy.module = function(moduleName , uri) {
 
       ctx.url = {
         ...url.parse(`${uri.replace(/\/+$/, '')}/${pathname.replace(/^\/+/, '')}`, true),
+        query: ctx.url.query,
         params: ctx.url.params,
       }
     }
