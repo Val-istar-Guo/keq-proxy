@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://www.github.com/keq-request/keq-proxy/compare/v1.1.1...v1.1.2) (2021-12-14)
+
+
+### Bug Fixes
+
+* query was discarded by proxy.module ([5aefaef](https://www.github.com/keq-request/keq-proxy/commit/5aefaef106f2c5cf7b93534fe700fc31efa7f741))
+
 ### [1.1.1](https://www.github.com/keq-request/keq-proxy/compare/v1.1.0...v1.1.1) (2021-05-14)
 
 
