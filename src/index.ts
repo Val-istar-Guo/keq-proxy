@@ -45,10 +45,17 @@ proxy.replace = function(regexp, replaceValue) {
 
 proxy.module = function(moduleName , uri) {
   return async(ctx, next) => {
-    if (ctx.options.module === moduleName) {
+    if (typeof ctx.options.module === 'string' && ctx.options.module === moduleName) {
       if (!ctx.module) throw new Error('Please set the module middleware first.')
-
       const pathname = ctx.module.pathname
+
+      ctx.url = {
+        ...url.parse(`${uri.replace(/\/+$/, '')}/${pathname.replace(/^\/+/, '')}`, true),
+        query: ctx.url.query,
+        params: ctx.url.params,
+      }
+    } else if (ctx.options.module?.name === moduleName) {
+      const pathname = ctx.options.module.pathname
 
       ctx.url = {
         ...url.parse(`${uri.replace(/\/+$/, '')}/${pathname.replace(/^\/+/, '')}`, true),
