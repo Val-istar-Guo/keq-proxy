@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://www.github.com/keq-request/keq-proxy/compare/v1.1.2...v1.2.0) (2022-01-17)
+
+
+### Features
+
+* support keq-cli@2 ([0385bc2](https://www.github.com/keq-request/keq-proxy/commit/0385bc2b840483bd03d50bc9ebf3af78b7be37a2))
+
 ### [1.1.2](https://www.github.com/keq-request/keq-proxy/compare/v1.1.1...v1.1.2) (2021-12-14)
 
 
