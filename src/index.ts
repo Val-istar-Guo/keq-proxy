@@ -3,7 +3,7 @@
  */
 
 import { Middleware } from 'keq'
-import * as url from 'url'
+import { URL } from 'whatwg-url'
 
 
 export type KeqProxyReplacer = (substring: string, ...args: any[]) => string
@@ -19,13 +19,7 @@ type Host = Readonly<string>
 
 const proxy: KeqProxy = function(from, to) {
   return async(ctx, next) => {
-    if (ctx.url.host === from) {
-      ctx.url = {
-        ...url.parse(url.format({ ...ctx.url, host: to }), true),
-        params: ctx.url.params,
-      }
-      ctx.url.host = to
-    }
+    if (ctx.url.host === from) ctx.url.host = to
     await next()
   }
 }
@@ -33,11 +27,8 @@ const proxy: KeqProxy = function(from, to) {
 
 proxy.replace = function(regexp, replaceValue) {
   return async(ctx, next) => {
-    const href = url.format(ctx.url)
-    ctx.url = {
-      ...url.parse(href.replace(regexp, replaceValue as any), true),
-      params: ctx.url.params,
-    }
+    const href = ctx.url.href
+    ctx.url.href = href.replace(regexp, replaceValue as any)
 
     await next()
   }
@@ -45,23 +36,16 @@ proxy.replace = function(regexp, replaceValue) {
 
 proxy.module = function(moduleName , uri) {
   return async(ctx, next) => {
-    if (typeof ctx.options.module === 'string' && ctx.options.module === moduleName) {
-      if (!ctx.module) throw new Error('Please set the module middleware first.')
-      const pathname = ctx.module.pathname
+    if (ctx.options.module?.name === moduleName) {
+      const pathname = ctx.options.module.pathname.replace(/^\/+/, '')
+      const url = new URL(uri)
 
-      ctx.url = {
-        ...url.parse(`${uri.replace(/\/+$/, '')}/${pathname.replace(/^\/+/, '')}`, true),
-        query: ctx.url.query,
-        params: ctx.url.params,
-      }
-    } else if (ctx.options.module?.name === moduleName) {
-      const pathname = ctx.options.module.pathname
+      ctx.url.protocol = url.protocol
+      ctx.url.host = url.host
+      ctx.url.username = url.username
+      ctx.url.password = url.password
 
-      ctx.url = {
-        ...url.parse(`${uri.replace(/\/+$/, '')}/${pathname.replace(/^\/+/, '')}`, true),
-        query: ctx.url.query,
-        params: ctx.url.params,
-      }
+      ctx.url.pathname = `${url.pathname.replace(/^\/+/, '')}/${pathname}`
     }
 
     await next()

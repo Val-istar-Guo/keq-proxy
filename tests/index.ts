@@ -1,8 +1,8 @@
 import anyTest, { TestInterface } from 'ava'
 import proxy from '../src'
-import * as url from 'url'
 import { Context } from 'keq'
 import * as sinon from 'sinon'
+import { KeqURL } from 'keq/lib/src/keq-url'
 
 
 const test = anyTest as TestInterface<{ ctx: Context }>
@@ -10,10 +10,7 @@ const test = anyTest as TestInterface<{ ctx: Context }>
 
 test.beforeEach(t => {
   t.context.ctx = {
-    url: {
-      ...url.parse('http://example.com/api/api_path', true),
-      params: {}
-    }
+    url: new KeqURL('http://example.com/api/api_path?query=1'),
   } as Context
 })
 
@@ -23,7 +20,7 @@ test('Proxy Host', async t => {
   await proxy('example.com', 'expect.com')(t.context.ctx, next)
 
   t.true(next.calledOnce)
-  t.is(t.context.ctx.url.href, 'http://expect.com/api/api_path')
+  t.is(t.context.ctx.url.href, 'http://expect.com/api/api_path?query=1')
 })
 
 test('Proxy Regexp Replace', async t => {
@@ -33,5 +30,5 @@ test('Proxy Regexp Replace', async t => {
 
 
   t.true(next.calledOnce)
-  t.is(t.context.ctx.url.href, 'https://expect.com/api_path')
+  t.is(t.context.ctx.url.href, 'https://expect.com/api_path?query=1')
 })
