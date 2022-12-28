@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://www.github.com/keq-request/keq-proxy/compare/v1.2.1...v1.2.2) (2022-12-28)
+
+
+### Bug Fixes
+
+* throw error when use absolute path ([e06edd8](https://www.github.com/keq-request/keq-proxy/commit/e06edd82803a5c90744976075b9f2802f4952c3f))
+
 ### [1.2.1](https://www.github.com/keq-request/keq-proxy/compare/v1.2.0...v1.2.1) (2022-03-01)
 
 
