@@ -3,8 +3,8 @@
 [![version](https://img.shields.io/npm/v/keq-proxy.svg?style=flat-square)](https://www.npmjs.com/package/keq-proxy)
 [![downloads](https://img.shields.io/npm/dm/keq-proxy.svg?style=flat-square)](https://www.npmjs.com/package/keq-proxy)
 [![license](https://img.shields.io/npm/l/keq-proxy.svg?style=flat-square)](https://www.npmjs.com/package/keq-proxy)
-[![dependencies](https://img.shields.io/david/Val-istar-Guo/keq-proxy.svg?style=flat-square)](https://www.npmjs.com/package/keq-proxy)
-[![coveralls](https://img.shields.io/coveralls/github/Val-istar-Guo/keq-proxy.svg?style=flat-square)](https://coveralls.io/github/Val-istar-Guo/keq-proxy)
+[![dependencies](https://img.shields.io/librariesio/github/keq-request/keq-proxy.svg?style=flat-square)](https://www.npmjs.com/package/keq-proxy)
+[![coveralls](https://img.shields.io/coveralls/github/keq-request/keq-proxy.svg?style=flat-square)](https://coveralls.io/github/keq-request/keq-proxy)
 
 
 
@@ -29,11 +29,6 @@ request.use(proxy(/http:\/\/example.com/, 'http://expect.com'))
 
 <!-- addition --><!-- addition -->
 
-## Sponsor
-
-Support code development on patron.
-
-[![patron](https://c5.patreon.com/external/logo/become_a_patron_button@2x.png)](https://www.patreon.com/bePatron?u=22478507)
 
 ## Contributing & Development
 

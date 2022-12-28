@@ -1,18 +1,7 @@
-import anyTest, { TestInterface } from 'ava'
 import proxy from '../src'
-import { Context } from 'keq'
 import * as sinon from 'sinon'
-import { KeqURL } from 'keq/lib/src/keq-url'
+import { test } from './test.before-each'
 
-
-const test = anyTest as TestInterface<{ ctx: Context }>
-
-
-test.beforeEach(t => {
-  t.context.ctx = {
-    url: new KeqURL('http://example.com/api/api_path?query=1'),
-  } as Context
-})
 
 test('Proxy Host', async t => {
   const next = sinon.fake()

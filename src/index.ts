@@ -34,18 +34,29 @@ proxy.replace = function(regexp, replaceValue) {
   }
 }
 
-proxy.module = function(moduleName , uri) {
+proxy.module = function(moduleName: string , uri: string) {
+  if (typeof uri !== 'string') {
+    throw new TypeError(`the arguments should be a string, but get ${typeof uri}`)
+  }
+
   return async(ctx, next) => {
     if (ctx.options.module?.name === moduleName) {
-      const pathname = ctx.options.module.pathname.replace(/^\/+/, '')
-      const url = new URL(uri)
+      const pathname: string = ctx.options.module.pathname.replace(/^\/+/, '')
 
-      ctx.url.protocol = url.protocol
-      ctx.url.host = url.host
-      ctx.url.username = url.username
-      ctx.url.password = url.password
+      if (uri[0] === '/') {
+        const url = uri[uri.length - 1] === '/' ? uri.replace(/\/$/g, '') : uri
 
-      ctx.url.pathname = `${url.pathname.replace(/^\/+/, '')}/${pathname}`
+        ctx.url.pathname = `${url}/${pathname}`
+      } else {
+        const url = new URL(uri)
+
+        ctx.url.protocol = url.protocol
+        ctx.url.host = url.host
+        ctx.url.username = url.username
+        ctx.url.password = url.password
+
+        ctx.url.pathname = `${url.pathname.replace(/\/$/g, '')}/${pathname}`
+      }
     }
 
     await next()
