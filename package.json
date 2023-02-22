@@ -8,11 +8,11 @@
   "scripts": {
     "prepare": "is-ci || husky install",
     "lint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\"  --fix",
-    "test": "npm run clean && npm run build:test && nyc ava",
+    "test": "npm run clean && npm run build:test && c8 ava",
     "test:debug": "ava --verbose",
     "test:update": "ava -u",
-    "report": "npm run build:test && nyc --reporter=html --reporter=text-summary --skip-full ava",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "report": "npm run build:test && c8 --reporter=html --reporter=text-summary --skip-full ava",
+    "coveralls": "c8 report --reporter=text-lcov | coveralls",
     "ci": "git-cz",
     "ca": "git add -A && git-cz -av",
     "release": "standard-version",
@@ -31,6 +31,7 @@
     "watch": "NODE_ENV=development ttsc -p build/tsconfig.lib.json -w"
   },
   "devDependencies": {
+    "@ava/typescript": "^3.0.1",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
@@ -39,6 +40,7 @@
     "@typescript-eslint/parser": "^4.15.2",
     "ajv": "^8.11.2",
     "ava": "^4.3.0",
+    "c8": "^7.12.0",
     "commitizen": "^4.2.4",
     "copyfiles": "^2.4.1",
     "coveralls": "^3.1.0",
@@ -49,7 +51,6 @@
     "keq": "^1.10.0",
     "lint-staged": "^11.0.0",
     "mili": "^4.7.5",
-    "nyc": "^15.1.0",
     "sinon": "^14.0.0",
     "standard-version": "^9.3.0",
     "ts-node": "^10.8.1",

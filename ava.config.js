@@ -1,5 +1,9 @@
 module.exports = {
   files: ['tests/**/*.ts', '!tests/**/*.before-each.ts'],
-  extensions: ['ts'],
-  require: ['ts-node/register'],
+  typescript: {
+    rewritePaths: {
+      'tests/': 'lib/tests/',
+    },
+    compile: false,
+  },
 }
